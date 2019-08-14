@@ -1,7 +1,7 @@
 #include <pca9685.hpp>
 
-
-r2d2::pca9685::pca9685_c::pca9685_c(r2d2::i2c::i2c_bus_c &i2c_bus) : i2c_bus(i2c_bus){
+r2d2::pca9685::pca9685_c::pca9685_c(r2d2::i2c::i2c_bus_c &i2c_bus)
+    : i2c_bus(i2c_bus){
     r2d2::pca9685::pca9685_c::init_pca9685();
 }
 

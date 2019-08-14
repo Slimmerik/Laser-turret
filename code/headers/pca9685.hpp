@@ -1,7 +1,7 @@
+#pragma once
+
 #include <hwlib.hpp>
 #include <i2c_bus.hpp>
-
-#pragma once
 
 #define PCA9685_BASE 0x40
 #define MODE1 0x00
