@@ -1,6 +1,6 @@
-#include <hwlib.hpp>
-
 #pragma once
+
+#include <hwlib.hpp>
 
 namespace r2d2::distance
 {

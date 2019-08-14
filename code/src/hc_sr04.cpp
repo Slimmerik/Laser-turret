@@ -2,13 +2,8 @@
 
 
 r2d2::distance::hc_sr04_c::hc_sr04_c(hwlib::pin_in & echo_pin, hwlib::pin_out & trigger_pin)
-:   echo_pin(echo_pin), trigger_pin(trigger_pin)
-{
-
-}
-
-
-
+    :echo_pin(echo_pin), trigger_pin(trigger_pin)
+{}
 
 int16_t r2d2::distance::hc_sr04_c::get_distance(){
     trigger_pin.write(0);
