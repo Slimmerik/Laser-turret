@@ -14,9 +14,10 @@ void r2d2::sg90::sg90_c::move_servo_to_degrees(uint16_t degrees){
         def_degrees = degrees;
     }
 
-    uint16_t duty_cycle_servo_range = sg90_max_duty_cycle - sg90_min_duty_cycle;
-    float degrees_steps = (duty_cycle_servo_range / servo_range_in_degrees);
-    pwm_controller.write_duty_cycle_stop(pwm_port, static_cast<uint16_t>(sg90_min_duty_cycle + (degrees_steps*def_degrees)));
+    float duty_cycle_servo_range = sg90_max_duty_cycle - sg90_min_duty_cycle;
+    float degrees_steps = duty_cycle_servo_range / servo_range_in_degrees;
+    float final_angle = sg90_min_duty_cycle + (degrees_steps*def_degrees);
+    pwm_controller.write_duty_cycle_stop(pwm_port, final_angle);
 }
 
 uint16_t r2d2::sg90::sg90_c::get_servo_position(){

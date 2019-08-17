@@ -3,9 +3,9 @@
 
 #pragma once
 
-#define sg90_max_duty_cycle 1450
-#define sg90_min_duty_cycle 550
-#define servo_range_in_degrees 180
+#define sg90_max_duty_cycle 1450 //1450
+#define sg90_min_duty_cycle 550 //550
+#define servo_range_in_degrees 1800
 
 namespace r2d2::sg90 {
     class sg90_c {
