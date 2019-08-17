@@ -38,7 +38,7 @@ int main(void) {
             r2d2::laser_turret_controller::laser_turret_controller_c(sg90_x, sg90_y, laser, sensor);
 
     while (1){
-        hwlib::cout << "enter the loop\n";
+        //hwlib::cout << "enter the loop\n";
         turret.point_at_coordinate_on_plane(5,5);
         turret.update();
         hwlib::wait_ms(200);

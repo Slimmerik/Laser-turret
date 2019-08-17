@@ -7,7 +7,7 @@
 #include <hc_sr04.hpp>
 #include <cmath>
 
-#define opposite_side 50
+#define opposite_side 100
 #define turret_to_echo 100
 
 #define min_distance_plane 100
@@ -29,25 +29,33 @@ namespace r2d2::laser_turret_controller {
         /**
          * The constructor of the laser_turret_controller object
          *
+         * @param distance_sensor adds object for distance calculation
+         * @param laser adds object to turn on and off je laser
+         * @param x_axis_servo adds object to control the x axis servo
+         * @param y_axis_servo adds object to control the y axis servo
          */
-        laser_turret_controller_c(r2d2::sg90::sg90_c &x_as_servo
-                ,r2d2::sg90::sg90_c &y_as_servo
+        laser_turret_controller_c(r2d2::sg90::sg90_c &x_axis_servo
+                ,r2d2::sg90::sg90_c &y_axis_servo
                 ,r2d2::laser::laser_c &laser
                 ,r2d2::distance::hc_sr04_c &distance_sensor);
 
         /**
+         * This methode updates the point the laser has to point at and also takes the distance in to account.
          *
          */
         void update();
 
         /**
+         * This mathode changes the coordinate the laser has to point at.
          *
+         * @param y y_axis of the grid
+         * @param x x_axis of the grid
          */
         void point_at_coordinate_on_plane(int8_t x, int8_t y);
 
     private:
-        r2d2::sg90::sg90_c &x_as_servo;
-        r2d2::sg90::sg90_c &y_as_servo;
+        r2d2::sg90::sg90_c &x_axis_servo;
+        r2d2::sg90::sg90_c &y_axis_servo;
         r2d2::laser::laser_c &laser;
         r2d2::distance::hc_sr04_c &distance_sensor;
 

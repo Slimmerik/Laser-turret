@@ -1,11 +1,11 @@
 #include <laser_turret_controller.hpp>
 
-r2d2::laser_turret_controller::laser_turret_controller_c::laser_turret_controller_c(r2d2::sg90::sg90_c &x_as_servo
-,r2d2::sg90::sg90_c &y_as_servo
+r2d2::laser_turret_controller::laser_turret_controller_c::laser_turret_controller_c(r2d2::sg90::sg90_c &x_axis_servo
+,r2d2::sg90::sg90_c &y_axis_servo
 ,r2d2::laser::laser_c &laser
 ,r2d2::distance::hc_sr04_c &distance_sensor)
-    :x_as_servo(x_as_servo)
-    ,y_as_servo(y_as_servo)
+    :x_axis_servo(x_axis_servo)
+    ,y_axis_servo(y_axis_servo)
     ,laser(laser)
     ,distance_sensor(distance_sensor)
 {
@@ -24,25 +24,25 @@ void r2d2::laser_turret_controller::laser_turret_controller_c::update(){
             float x_axis = atan(grid_steps * coordinate_x/as);
             x_axis = (x_axis*180.0f/M_PI)*servo_multiplier;
             uint16_t final_servo_position = servo_middle_of_field_x + (x_axis) ;
-            x_as_servo.move_servo_to_degrees(final_servo_position);
+            x_axis_servo.move_servo_to_degrees(final_servo_position);
         }else{
             float coordinate_multiplier = coordinate_x*-1;
             float x_axis = atan(grid_steps * coordinate_multiplier/as);
             x_axis = (x_axis*180.0f/M_PI)*servo_multiplier;
             uint16_t final_servo_position = servo_middle_of_field_x - (x_axis);
-            x_as_servo.move_servo_to_degrees(final_servo_position);
+            x_axis_servo.move_servo_to_degrees(final_servo_position);
         }
         if(coordinate_y > 0){
             float x_axis = atan(grid_steps * coordinate_y/as);
             x_axis = (x_axis*180.0f/M_PI)*servo_multiplier;
             uint16_t final_servo_position = servo_middle_of_field_y + (x_axis);
-            y_as_servo.move_servo_to_degrees(final_servo_position);
+            y_axis_servo.move_servo_to_degrees(final_servo_position);
         }else{
             float coordinate_multiplier = coordinate_y*-1;
             float x_axis = atan(grid_steps * coordinate_multiplier/as);
             x_axis = (x_axis*180.0f/M_PI)*servo_multiplier;
             uint16_t final_servo_position = servo_middle_of_field_y - (x_axis);
-            y_as_servo.move_servo_to_degrees(final_servo_position);
+            y_axis_servo.move_servo_to_degrees(final_servo_position);
         }
     }
 }
