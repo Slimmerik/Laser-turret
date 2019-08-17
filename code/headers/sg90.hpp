@@ -1,7 +1,7 @@
+#pragma once
+
 #include <hwlib.hpp>
 #include <pca9685.hpp>
-
-#pragma once
 
 #define sg90_max_duty_cycle 1450 //1450
 #define sg90_min_duty_cycle 550 //550
