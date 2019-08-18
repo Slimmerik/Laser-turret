@@ -7,18 +7,18 @@
 #include <hc_sr04.hpp>
 #include <cmath>
 
-#define opposite_side 100
-#define turret_to_echo 100
+#define opposite_side 100 //The physical size of the grid
+#define turret_to_echo 100 //The distance from the turret to the distance sensor
 
-#define min_distance_plane 100
-#define max_distance_plane 400
+#define min_distance_plane 100 //The minimal distance the system updates the servos
+#define max_distance_plane 400 //The maximum distance the system updates the servos
 
-#define M_PI 3.141592654
-#define servo_middle_of_field_x 900
-#define servo_middle_of_field_y 900
-#define servo_multiplier 10
+#define M_PI 3.141592654 //PI
+#define servo_middle_of_field_x 900 //Start point for servos
+#define servo_middle_of_field_y 900 //Start point for servos
+#define servo_multiplier 10 //To give the servos more steps the input value is *10 on the servo side
 
-#define grid_size 10
+#define grid_size 10 //Range of coordinates, grid range with size 10 is 2d 5,-5
 
 
 
@@ -27,7 +27,7 @@ namespace r2d2::laser_turret_controller {
     public:
 
         /**
-         * The constructor of the laser_turret_controller object
+         * The constructor of the laser_turret_controller object.
          *
          * @param distance_sensor adds object for distance calculation
          * @param laser adds object to turn on and off je laser
@@ -41,12 +41,15 @@ namespace r2d2::laser_turret_controller {
 
         /**
          * This methode updates the point the laser has to point at and also takes the distance in to account.
+         * This mathode updates the angle of the servos to point at the coordiantion that correlates to the physical
+         * point on the grid.
+         *
          *
          */
         void update();
 
         /**
-         * This mathode changes the coordinate the laser has to point at.
+         * This mathode changes the coordinate the laser has to point at on the grid.
          *
          * @param y y_axis of the grid
          * @param x x_axis of the grid
@@ -59,8 +62,8 @@ namespace r2d2::laser_turret_controller {
         r2d2::laser::laser_c &laser;
         r2d2::distance::hc_sr04_c &distance_sensor;
 
-        float os = opposite_side/2;
-        float grid_steps = (os / (grid_size/2));
+        const float os = opposite_side/2;
+        const float grid_steps = (os / (grid_size/2));
 
         int8_t coordinate_x = 0;
         int8_t coordinate_y = 0;

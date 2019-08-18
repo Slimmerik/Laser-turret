@@ -21,7 +21,6 @@ int main(void) {
 
     //laser obj
     r2d2::laser::laser_c laser = r2d2::laser::laser_c(27);
-    laser.turn_on();
 
     sg90_x.move_servo_to_degrees(900);
     hwlib::wait_ms(1000);
