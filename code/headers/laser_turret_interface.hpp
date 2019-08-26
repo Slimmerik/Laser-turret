@@ -22,8 +22,8 @@
 
 
 
-namespace r2d2::laser_turret_controller {
-    class laser_turret_controller_c {
+namespace r2d2::laser_turret_interface {
+    class laser_turret_interface_c {
     public:
 
         /**
@@ -34,14 +34,14 @@ namespace r2d2::laser_turret_controller {
          * @param x_axis_servo adds object to control the x axis servo
          * @param y_axis_servo adds object to control the y axis servo
          */
-        laser_turret_controller_c(r2d2::sg90::sg90_c &x_axis_servo
+        laser_turret_interface_c(r2d2::sg90::sg90_c &x_axis_servo
                 ,r2d2::sg90::sg90_c &y_axis_servo
                 ,r2d2::laser::laser_c &laser
                 ,r2d2::distance::hc_sr04_c &distance_sensor);
 
         /**
-         * This methode updates the point the laser has to point at and also takes the distance in to account.
-         * This mathode updates the angle of the servos to point at the coordiantion that correlates to the physical
+         * This method updates the point the laser has to point at and also takes the distance in to account.
+         * This method updates the angle of the servos to point at the coordiantion that correlates to the physical
          * point on the grid.
          *
          *
@@ -49,7 +49,7 @@ namespace r2d2::laser_turret_controller {
         void update();
 
         /**
-         * This mathode changes the coordinate the laser has to point at on the grid.
+         * This mathod changes the coordinate the laser has to point at on the grid.
          *
          * @param y y_axis of the grid
          * @param x x_axis of the grid

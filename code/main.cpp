@@ -4,7 +4,7 @@
 #include <sg90.hpp>
 #include <laser.hpp>
 #include <hc_sr04.hpp>
-#include <laser_turret_controller.hpp>
+#include <laser_turret_interface.hpp>
 
 int main(void) {
     // kill the watchdog
@@ -20,7 +20,8 @@ int main(void) {
     r2d2::sg90::sg90_c sg90_y = r2d2::sg90::sg90_c(servo_4, pca);
 
     //laser obj
-    r2d2::laser::laser_c laser = r2d2::laser::laser_c(27);
+    auto laser_pin_out = hwlib::target::pin_out(hwlib::target::pins::d13);
+    r2d2::laser::laser_c laser = r2d2::laser::laser_c(laser_pin_out);
 
     sg90_x.move_servo_to_degrees(900);
     hwlib::wait_ms(1000);
@@ -33,11 +34,11 @@ int main(void) {
     r2d2::distance::hc_sr04_c sensor = r2d2::distance::hc_sr04_c(echo_pin, trigger_pin);
 
     //turret obj
-    r2d2::laser_turret_controller::laser_turret_controller_c turret =
-            r2d2::laser_turret_controller::laser_turret_controller_c(sg90_x, sg90_y, laser, sensor);
+    r2d2::laser_turret_interface::laser_turret_interface_c turret =
+            r2d2::laser_turret_interface::laser_turret_interface_c(sg90_x, sg90_y, laser, sensor);
 
     while (1){
-        //hwlib::cout << "enter the loop\n";
+        hwlib::cout << "enter the loop\n";
         turret.point_at_coordinate_on_plane(5,5);
         turret.update();
         hwlib::wait_ms(200);

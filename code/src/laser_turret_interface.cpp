@@ -1,6 +1,6 @@
-#include <laser_turret_controller.hpp>
+#include <laser_turret_interface.hpp>
 
-r2d2::laser_turret_controller::laser_turret_controller_c::laser_turret_controller_c(r2d2::sg90::sg90_c &x_axis_servo
+r2d2::laser_turret_interface::laser_turret_interface_c::laser_turret_interface_c(r2d2::sg90::sg90_c &x_axis_servo
 ,r2d2::sg90::sg90_c &y_axis_servo
 ,r2d2::laser::laser_c &laser
 ,r2d2::distance::hc_sr04_c &distance_sensor)
@@ -13,7 +13,7 @@ r2d2::laser_turret_controller::laser_turret_controller_c::laser_turret_controlle
 }
 
 
-void r2d2::laser_turret_controller::laser_turret_controller_c::update(){
+void r2d2::laser_turret_interface::laser_turret_interface_c::update(){
     //update distance
     int16_t distance = distance_sensor.get_distance();
     if(distance >= min_distance_plane && distance <= max_distance_plane ){
@@ -49,7 +49,7 @@ void r2d2::laser_turret_controller::laser_turret_controller_c::update(){
 }
 
 
-void r2d2::laser_turret_controller::laser_turret_controller_c::point_at_coordinate_on_plane(int8_t x, int8_t y){
+void r2d2::laser_turret_interface::laser_turret_interface_c::point_at_coordinate_on_plane(int8_t x, int8_t y){
     coordinate_x = x;
     coordinate_y = y;
 }

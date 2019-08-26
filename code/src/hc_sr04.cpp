@@ -24,8 +24,5 @@ int16_t r2d2::distance::hc_sr04_c::get_distance(){
 
     uint32_t tick_counter = hwlib::now_ticks() - ticks_start;
     tick_counter = tick_counter / (hwlib::ticks_per_us() * 2) * 0.035 * 10; // formula to change ticks into centimeters.
-    // if(tick_counter > 399) {
-    //     return -1;
-    // }
     return tick_counter;
 }
